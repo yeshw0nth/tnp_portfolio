@@ -35,16 +35,16 @@ export default function Home() {
   };
 
   return (
-    <div className="h-full w-full flex items-center justify-center p-6 selection:bg-[#1C1C1C] selection:text-[#F9F8F6] font-sans relative">
+    <div className="h-full w-full flex items-center justify-center px-6 sm:px-8 py-12 selection:bg-[#1C1C1C] selection:text-[#F9F8F6] font-sans relative">
       <motion.div 
-        className="max-w-5xl w-full text-center relative z-10 flex flex-col items-center justify-center"
+        className="max-w-5xl w-full text-center relative z-10 flex flex-col items-center justify-center pb-20 md:pb-0"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
         <motion.span 
           variants={itemVariants}
-          className="block text-[12px] uppercase tracking-[0.2em] font-sans font-medium mb-6 opacity-70"
+          className="block text-[10px] sm:text-[12px] uppercase tracking-[0.2em] font-sans font-medium mb-4 sm:mb-6 opacity-70"
         >
           Class of 2029 • Recruitment Drive
         </motion.span>
@@ -52,25 +52,25 @@ export default function Home() {
         <motion.h1 
           variants={itemVariants}
           animate={floatAnimation}
-          className="text-[4rem] sm:text-[7.5rem] leading-[0.9] font-serif tracking-tight mb-8"
+          className="text-[3rem] sm:text-[7.5rem] leading-[1.1] sm:leading-[0.9] font-serif tracking-tight mb-6 sm:mb-8"
         >
           Training & Placement club.
         </motion.h1>
         
         <motion.p 
           variants={itemVariants}
-          className="text-[18px] font-sans mb-16 max-w-2xl mx-auto leading-relaxed opacity-60"
+          className="text-sm md:text-[18px] font-sans mb-10 sm:mb-16 max-w-2xl mx-auto leading-relaxed opacity-60"
         >
           Bridging the gap between raw potential and industry excellence.
         </motion.p>
 
         <motion.div variants={itemVariants} className="flex flex-col items-center gap-5 mt-4">
-          <span className="text-[14px] font-sans font-medium opacity-50 tracking-wide uppercase">Ready to step in?</span>
+          <span className="text-[12px] sm:text-[14px] font-sans font-medium opacity-50 tracking-wide uppercase">Ready to step in?</span>
           <a
             href="https://tinyurl.com/TnpRecruitment2029"
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative flex items-center justify-center gap-3 px-8 py-4 bg-[#1C1C1C] text-[#F9F8F6] rounded-full text-[16px] font-sans font-medium shadow-[0_0_25px_rgba(28,28,28,0.15)] hover:bg-[#333333] hover:shadow-[0_0_35px_rgba(28,28,28,0.3)] transition-all duration-300"
+            className="group relative flex items-center justify-center gap-3 px-8 py-4 bg-[#1C1C1C] text-[#F9F8F6] rounded-full text-[14px] sm:text-[16px] font-sans font-medium shadow-[0_0_25px_rgba(28,28,28,0.15)] hover:bg-[#333333] hover:shadow-[0_0_35px_rgba(28,28,28,0.3)] transition-all duration-300"
           >
             Access Registration Form
             <ArrowUpRight className="w-5 h-5 opacity-80 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" strokeWidth={2} />
@@ -83,7 +83,7 @@ export default function Home() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 1 }}
-        className="absolute bottom-0 left-0 w-full px-8 py-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-[12px] sm:text-[13px] font-sans text-[#1C1C1C] opacity-50 hover:opacity-75 transition-opacity duration-300 z-20"
+        className="absolute bottom-0 left-0 w-full px-6 md:px-8 pt-6 pb-10 md:pb-6 flex flex-col md:flex-row items-center md:justify-between gap-4 text-[12px] sm:text-[13px] font-sans text-[#1C1C1C] opacity-50 hover:opacity-75 transition-opacity duration-300 z-20"
       >
         <div className="flex flex-wrap items-center justify-center gap-3">
           <span className="font-medium uppercase tracking-wider">Contact Us:</span>
