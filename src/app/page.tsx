@@ -2,48 +2,7 @@
 
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
-import { motion, useMotionValue, useSpring } from 'framer-motion';
-import { useRef } from 'react';
-
-function MagneticButton({ children, href }: { children: React.ReactNode, href: string }) {
-  const ref = useRef<HTMLAnchorElement>(null);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  const mouseXSpring = useSpring(x, { stiffness: 150, damping: 15, mass: 0.1 });
-  const mouseYSpring = useSpring(y, { stiffness: 150, damping: 15, mass: 0.1 });
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    const { clientX, clientY } = e;
-    const { height, width, left, top } = ref.current!.getBoundingClientRect();
-    const middleX = clientX - (left + width / 2);
-    const middleY = clientY - (top + height / 2);
-    x.set(middleX * 0.3);
-    y.set(middleY * 0.3);
-  };
-
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-  };
-
-  return (
-    <motion.a
-      ref={ref}
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{ x: mouseXSpring, y: mouseYSpring }}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      className="group relative flex items-center justify-center gap-3 px-8 py-4 bg-[#1C1C1C] text-[#F9F8F6] rounded-full text-[16px] font-sans font-medium shadow-[0_0_25px_rgba(28,28,28,0.15)] hover:shadow-[0_0_35px_rgba(28,28,28,0.3)] transition-shadow duration-300"
-    >
-      {children}
-    </motion.a>
-  );
-}
+import { motion } from 'framer-motion';
 
 export default function Home() {
   const containerVariants = {
@@ -76,9 +35,9 @@ export default function Home() {
   };
 
   return (
-    <div className="h-full w-full flex items-center justify-center p-6 selection:bg-[#1C1C1C] selection:text-[#F9F8F6] font-sans">
+    <div className="h-full w-full flex items-center justify-center p-6 selection:bg-[#1C1C1C] selection:text-[#F9F8F6] font-sans relative">
       <motion.div 
-        className="max-w-4xl w-full text-center relative z-10 flex flex-col items-center justify-center"
+        className="max-w-5xl w-full text-center relative z-10 flex flex-col items-center justify-center"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -95,7 +54,7 @@ export default function Home() {
           animate={floatAnimation}
           className="text-[4rem] sm:text-[7.5rem] leading-[0.9] font-serif tracking-tight mb-8"
         >
-          Training & Placement.
+          Training & Placement club.
         </motion.h1>
         
         <motion.p 
@@ -107,13 +66,40 @@ export default function Home() {
 
         <motion.div variants={itemVariants} className="flex flex-col items-center gap-5 mt-4">
           <span className="text-[14px] font-sans font-medium opacity-50 tracking-wide uppercase">Ready to step in?</span>
-          <motion.div animate={floatAnimation}>
-            <MagneticButton href="https://tinyurl.com/TnpRecruitment2029">
-              Access Registration Form
-              <ArrowUpRight className="w-5 h-5 opacity-80 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" strokeWidth={2} />
-            </MagneticButton>
-          </motion.div>
+          <a
+            href="https://tinyurl.com/TnpRecruitment2029"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative flex items-center justify-center gap-3 px-8 py-4 bg-[#1C1C1C] text-[#F9F8F6] rounded-full text-[16px] font-sans font-medium shadow-[0_0_25px_rgba(28,28,28,0.15)] hover:bg-[#333333] hover:shadow-[0_0_35px_rgba(28,28,28,0.3)] transition-all duration-300"
+          >
+            Access Registration Form
+            <ArrowUpRight className="w-5 h-5 opacity-80 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" strokeWidth={2} />
+          </a>
         </motion.div>
+      </motion.div>
+
+      {/* Minimal Footer */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2, duration: 1 }}
+        className="absolute bottom-0 left-0 w-full px-8 py-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-[12px] sm:text-[13px] font-sans text-[#1C1C1C] opacity-50 hover:opacity-75 transition-opacity duration-300 z-20"
+      >
+        <div className="flex flex-wrap items-center justify-center gap-3">
+          <span className="font-medium uppercase tracking-wider">Contact Us:</span>
+          <a href="tel:+919491212400" className="hover:underline underline-offset-4 decoration-1">Mohammad Ismail</a>
+          <span className="opacity-40">•</span>
+          <a href="tel:+919390375499" className="hover:underline underline-offset-4 decoration-1">Mohith</a>
+        </div>
+        
+        <a 
+          href="https://www.instagram.com/tnpclub_gprec" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="flex items-center gap-1 hover:underline underline-offset-4 decoration-1 font-medium uppercase tracking-wider"
+        >
+          Instagram <ArrowUpRight className="w-3 h-3" strokeWidth={2} />
+        </a>
       </motion.div>
     </div>
   );
