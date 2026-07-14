@@ -4,8 +4,62 @@ import { useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+const batch2027 = [
+  { name: "Shaik Neerganti Mohammed Umair", roll: "239X1A0174", branch: "CE" },
+  { name: "Shaik Abdulla", roll: "239X1A0170", branch: "CE" },
+  { name: "Tamatam Likitha", roll: "239X1A2914", branch: "CSB" },
+  { name: "Badveli Chandrika", roll: "239X1A3203", branch: "CSD" },
+  { name: "Ballani Meghana", roll: "239X1A3205", branch: "CSD" },
+  { name: "Lucky Reddy", roll: "239X1A3252", branch: "CSD" },
+  { name: "Kuruba Venkata Sahithi", roll: "239X1A0589", branch: "CSE" },
+  { name: "Rokkam Sai Sharshitha Reddy", roll: "239X1A05F8", branch: "CSE" },
+  { name: "Kummari Sindhu", roll: "239X1A0588", branch: "CSE" },
+  { name: "Nemallapuri Venkata Srikanth", roll: "239X1A05J0", branch: "CSE" },
+  { name: "Mallela Guru Jagannatha Reddy", roll: "239X1A05G9", branch: "CSE" },
+  { name: "Golla Santhosh Kumar", roll: "239X1A0558", branch: "CSE" },
+  { name: "Neeli Harshavardhan", roll: "239X1A33A2", branch: "CSM" },
+  { name: "Shaik Naseeha Mashrath", roll: "239X1A3384", branch: "CSM" },
+  { name: "K. Manasa", roll: "239X1A0466", branch: "ECE" },
+  { name: "Surays Sai Nakshathra Bai", roll: "239X1A0497", branch: "ECE" },
+  { name: "Neerukattu Vikas", roll: "239X1A0459", branch: "ECE" },
+  { name: "Avireni Yashaswini", roll: "239X1A0405", branch: "ECE" },
+  { name: "Gorla Raghavendra", roll: "249X5A04M3", branch: "ECE" },
+  { name: "Sajjana Gandla Raghava", roll: "249X5A02E1", branch: "EEE" },
+  { name: "Donthireddy Manogna Reddy", roll: "239X1A0206", branch: "EEE" },
+  { name: "Burujula Praveena", roll: "239X1A0203", branch: "EEE" },
+  { name: "Paggala Yeshwanth", roll: "239X1A0344", branch: "ME" },
+  { name: "Shaik Zaid Al Basshar", roll: "239X1A0369", branch: "ME" }
+];
+
+const batch2028 = [
+  { name: "Anna Rajesh", roll: "249XA01020", branch: "CE" },
+  { name: "Kolaparthi Sai Satvasthai Sankarshan", roll: "249XA01048", branch: "CE" },
+  { name: "Chakali Lakshmanna", roll: "249XA32127", branch: "CSD" },
+  { name: "G. R. Pranitha", roll: "249XA32015", branch: "CSD" },
+  { name: "V. Mohith", roll: "249XA05315", branch: "CSE" },
+  { name: "Paramapogu Sowmika Helsiba", roll: "249XA05219", branch: "CSE" },
+  { name: "Peshmam Faseeha Samreen", roll: "249XA05225", branch: "CSE" },
+  { name: "Mohammad Ismail", roll: "249XA05229", branch: "CSE" },
+  { name: "V. Mokshith", roll: "249XA05316", branch: "CSE" },
+  { name: "Gujarathi Preethi", roll: "249XA05086", branch: "CSE" },
+  { name: "Girigari Kashma", roll: "249XA33024", branch: "CSM" },
+  { name: "Thamatam Bharath Kumar Reddy", roll: "249XA33186", branch: "CSM" },
+  { name: "P. Kavya", roll: "L.E", branch: "CSM" },
+  { name: "Shaik Afifa Tabassum", roll: "249XA33153", branch: "CSM" },
+  { name: "Bakki Reddy Gari Siri Reddy", roll: "249XA04006", branch: "ECE" },
+  { name: "Bestha Vidya Dharani", roll: "249XA04018", branch: "ECE" },
+  { name: "Karapakula Lakshmi Nivas", roll: "249XA04108", branch: "ECE" },
+  { name: "K. Sai Dedeepya", roll: "249XA04084", branch: "ECE" },
+  { name: "Nethi Hitesh", roll: "249XA04130", branch: "ECE" },
+  { name: "Seepala Madhu Sri", roll: "249XA02087", branch: "EEE" },
+  { name: "Sowjanya", roll: "249XA02023", branch: "EEE" },
+  { name: "Saginala Praneeth", roll: "249XA03087", branch: "ME" },
+  { name: "Boya Venkatesh", roll: "249XA03060", branch: "ME" }
+];
+
 export default function Home() {
-  const [activeTab, setActiveTab] = useState<'home' | 'about'>('home');
+  const [activeTab, setActiveTab] = useState<'home' | 'about' | 'coordinators'>('home');
+  const [activeBatch, setActiveBatch] = useState<'2027' | '2028'>('2028');
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -42,6 +96,8 @@ export default function Home() {
     exit: { opacity: 0, y: -20, transition: { duration: 0.3, ease: "easeIn" as const } }
   };
 
+  const currentBatchData = activeBatch === '2028' ? batch2028 : batch2027;
+
   return (
     <div className="flex flex-col min-h-[100dvh] relative overflow-hidden selection:bg-[#1C1C1C] selection:text-[#F9F8F6] font-sans">
       
@@ -59,6 +115,12 @@ export default function Home() {
             className={`text-[11px] sm:text-[13px] tracking-[0.15em] uppercase font-sans transition-all duration-300 ${activeTab === 'about' ? 'opacity-100 font-medium underline underline-offset-[6px] decoration-1' : 'opacity-50 hover:opacity-100'}`}
           >
             About
+          </button>
+          <button 
+            onClick={() => setActiveTab('coordinators')}
+            className={`text-[11px] sm:text-[13px] tracking-[0.15em] uppercase font-sans transition-all duration-300 ${activeTab === 'coordinators' ? 'opacity-100 font-medium underline underline-offset-[6px] decoration-1' : 'opacity-50 hover:opacity-100'}`}
+          >
+            Coordinators
           </button>
         </nav>
       </header>
@@ -159,6 +221,61 @@ export default function Home() {
                   <p className="font-serif text-[13px] sm:text-[15px] opacity-70 leading-relaxed">
                     Keep the student body relentlessly informed about placement processes and industry demands.
                   </p>
+                </div>
+              </div>
+            </motion.div>
+          )}
+
+          {activeTab === 'coordinators' && (
+            <motion.div
+              key="coordinators"
+              variants={viewVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              className="max-w-4xl w-full flex flex-col items-center text-center mt-8 sm:mt-12 h-full"
+            >
+              <h2 className="text-[2rem] sm:text-[3.5rem] font-serif tracking-tight mb-6 sm:mb-8 text-[#1C1C1C]">
+                The Coordinators.
+              </h2>
+              
+              {/* Batch Toggle */}
+              <div className="flex items-center bg-[#1C1C1C]/5 p-1 rounded-full mb-8 border border-[#1C1C1C]/10">
+                <button
+                  onClick={() => setActiveBatch('2027')}
+                  className={`px-6 py-2 rounded-full text-[13px] font-sans font-medium transition-all duration-300 ${activeBatch === '2027' ? 'bg-[#1C1C1C] text-[#F9F8F6] shadow-md' : 'text-[#1C1C1C] opacity-70 hover:opacity-100'}`}
+                >
+                  Batch 2027
+                </button>
+                <button
+                  onClick={() => setActiveBatch('2028')}
+                  className={`px-6 py-2 rounded-full text-[13px] font-sans font-medium transition-all duration-300 ${activeBatch === '2028' ? 'bg-[#1C1C1C] text-[#F9F8F6] shadow-md' : 'text-[#1C1C1C] opacity-70 hover:opacity-100'}`}
+                >
+                  Batch 2028
+                </button>
+              </div>
+
+              {/* Scrollable List Container */}
+              <div className="w-full max-h-[50vh] sm:max-h-[55vh] overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] px-2 relative mask-image-bottom">
+                <div className="flex flex-col gap-2 w-full max-w-3xl mx-auto pb-10">
+                  {currentBatchData.map((student, idx) => (
+                    <motion.div 
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: idx * 0.03, duration: 0.3 }}
+                      key={idx} 
+                      className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 rounded-xl hover:bg-[#1C1C1C]/5 transition-colors duration-300 text-left border border-transparent hover:border-[#1C1C1C]/5"
+                    >
+                      <span className="font-serif text-[15px] sm:text-[17px] font-medium text-[#1C1C1C] mb-1 sm:mb-0">
+                        {student.name}
+                      </span>
+                      <div className="flex items-center gap-3 font-sans text-[12px] sm:text-[13px] text-[#1C1C1C] opacity-70">
+                        <span className="tracking-widest uppercase">{student.branch}</span>
+                        <span className="w-1 h-1 rounded-full bg-[#1C1C1C]/30"></span>
+                        <span className="font-mono tracking-wider">{student.roll}</span>
+                      </div>
+                    </motion.div>
+                  ))}
                 </div>
               </div>
             </motion.div>
