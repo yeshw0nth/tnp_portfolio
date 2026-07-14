@@ -255,29 +255,39 @@ export default function Home() {
                 </button>
               </div>
 
-              {/* Scrollable List Container */}
-              <div className="w-full max-h-[50vh] sm:max-h-[55vh] overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] px-2 relative mask-image-bottom">
-                <div className="flex flex-col gap-2 w-full max-w-3xl mx-auto pb-10">
-                  {currentBatchData.map((student, idx) => (
-                    <motion.div 
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: idx * 0.03, duration: 0.3 }}
-                      key={idx} 
-                      className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 rounded-xl hover:bg-[#1C1C1C]/5 transition-colors duration-300 text-left border border-transparent hover:border-[#1C1C1C]/5"
-                    >
-                      <span className="font-serif text-[15px] sm:text-[17px] font-medium text-[#1C1C1C] mb-1 sm:mb-0">
-                        {student.name}
-                      </span>
-                      <div className="flex items-center gap-3 font-sans text-[12px] sm:text-[13px] text-[#1C1C1C] opacity-70">
-                        <span className="tracking-widest uppercase">{student.branch}</span>
-                        <span className="w-1 h-1 rounded-full bg-[#1C1C1C]/30"></span>
-                        <span className="font-mono tracking-wider">{student.roll}</span>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
+              {/* Floating Badge Cloud */}
+              <motion.div 
+                key={activeBatch}
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: { opacity: 1, transition: { staggerChildren: 0.03 } }
+                }}
+                initial="hidden"
+                animate="visible"
+                className="flex flex-wrap justify-center items-center gap-3 md:gap-4 w-full max-w-4xl mx-auto mt-4 px-2"
+              >
+                {currentBatchData.map((student) => (
+                  <motion.div
+                    key={student.roll}
+                    variants={{
+                      hidden: { opacity: 0, scale: 0.8 },
+                      visible: { opacity: 1, scale: 1, transition: { type: "spring", stiffness: 200, damping: 15 } }
+                    }}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="flex items-center gap-2 px-4 py-2 bg-[#1C1C1C]/5 border border-[#1C1C1C]/10 rounded-full hover:bg-[#1C1C1C]/10 transition-colors duration-200 cursor-default group"
+                    title={student.roll}
+                  >
+                    <span className="font-sans font-medium text-[#1C1C1C] text-[13px] sm:text-[14px]">
+                      {student.name}
+                    </span>
+                    <span className="text-[#1C1C1C] opacity-40 text-[10px] sm:text-[12px]">•</span>
+                    <span className="font-sans font-bold text-[#1C1C1C] opacity-80 text-[12px] sm:text-[13px] tracking-wide">
+                      {student.branch}
+                    </span>
+                  </motion.div>
+                ))}
+              </motion.div>
             </motion.div>
           )}
         </AnimatePresence>
